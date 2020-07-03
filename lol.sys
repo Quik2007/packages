@@ -1,0 +1,366 @@
+import sys, time, random, os, getpass, urllib.request
+from github import Github
+
+g = Github("Quik2007","GH123_GitHub")
+
+
+for repo in g.get_user().get_repos():
+    print(repo.name)
+    repo.edit(has_wiki=False)
+    # to see all the available attributes and methods
+    print(dir(repo))
+
+repo=g.get_repo("Quik2007/TEST")
+print(repo.name)
+contents = repo.get_contents("")
+for content_file in contents:
+    print(content_file)
+
+
+input()
+
+print("User logged in: "+getpass.getuser())
+
+def out(text,pr="SYS;"):
+    print(pr+" "+text)
+
+out(" Version 1.2.4 Beta (STABLE 1.2.4-f34d)")
+out("Type Help for more...","SYS:HELPER")
+out("OK")
+
+def error(text,reporter="Sys-Error;",report=True):
+    print(reporter+" ERROR: "+text)
+    if report == True:
+        print(reporter+" Report Error to SYS; Controller...")
+        time.sleep(random.randint(1,15)/10)
+        print(reporter+" Reported!")
+
+if os.path.exists("C:/Users/SYS"):
+    try:
+        mkdir("C:/Users/SYS")
+        out("User SYS created!","Sys-Install:::")
+    except:
+        error("Sys-Install::: can't create user 'SYS', ERROR: WINDOWS-Error: FileError: Permission denied!")
+
+def InstallPackage(p,c="Windows"):
+    if random.randint(1,10) == 5:
+        error("Package-Error: The package '"+p+"' from "+c+"could not be installed. ERROR: 001PI")
+        InstallPackage(p,c)
+    else:
+        if os.path.exists("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages/"+c+p+".txt"):
+            out("The package "+p+" from "+c+" is already installed!","Sys-Install:::")
+        try:
+            file=open("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages/"+c+p+".txt")
+            file.close()
+        except:
+            error("Package-Error: The package '"+p+"' from "+c+"could not be installed. ERROR: 002PI")
+        out("The package '"+p+"' is installed...","Sys-Install:::")
+        time.sleep(random.randint(8,34)/10)
+        out("The package '"+p+"' from "+c+" was successfully installed!","Sys-Install:::")
+
+
+
+
+ActionIds={}
+def SysViewer(Service, Action=None, Provider="Windows"):
+    print("SYS:Viewer::: Observe "+Provider+"'s "+Service+" Service...")
+    if Action!=None:
+        time.sleep(0.2)
+        if Action in ActionIds:
+            print("SYS:Viewer::: Prepare action "+Action+"... Action ID: sys.disabler:"+ActionIds[Action])
+        else:
+            ActionID=random.randint(1000000,2000000)
+            def Schonvergeben():
+                for a in ActionIds:
+                    if ActionIds[a] == ActionID:
+                        return True
+                return False
+            while Schonvergeben() == True:
+                ActionID=random.randint(1000000,2000000)
+            ActionIds[Action]=ActionID
+            print("SYS:Viewer::: Prepare action "+Action+"... Action ID: sys.disabler:"+str(ActionID))
+
+
+
+def SysDisabler(Service, Provider="Windows", Works=True):
+    print("SYS:Disabler::: Disable "+Provider+"'s "+Service+" Service...")
+    zeiten=[0.1, 0.3, 0.6, 0.8,1.1,1.3]
+    random.shuffle(zeiten)
+    time.sleep(zeiten[0])
+    if Works==True:
+        if random.randint(1,10) in range(3):
+            Works=False
+            print("The service "+Service+" could not properly disintegrated!")
+            if random.randint(1,5) == 5:
+                print("Error at disable of "+Service+". Caused at sys."+Provider+".disable:x00047891")
+                time.sleep(0.6)
+                SysDisabler(Service, Provider)
+    if Works == True:
+        print("SYS:Disabler::: "+Service+" is successfully disabled!")
+    else:
+        print("SYS:Disabler::: We can't disble the "+Service+" from "+Provider+".")
+        if random.randint(1,10):
+            print("SYS_________EXIT::: EXIT()")
+            time.sleep(0.1)
+            print("SYS:Viewer::: WINDOWS SECURITY FOR CUSTOMER has tried to close this program!")
+
+
+def Copy(Anzahl):
+    for a in range(Anzahl):
+        print("SYS; Replace SYS to save folders on your PC...")
+        time.sleep(random.randint(1,20)/10)
+        print("SYS; Save Folder found! Replacing finished!")
+
+Copy(2)
+
+def Initialize():
+    if os.path.exists("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/version.txt") == False:
+        out("Install SYS; ...","Sys-Install:::")
+        time.sleep(random.randint(1,40)/10)
+        out("Sucessfully!","Sys-Install:::")
+        out("Run SYS; ...","Sys-Install:::")
+        time.sleep(random.randint(1,32)/10)
+        out("SYS; IS RUNNED!","Sys-Install:::")
+        out("Install new packages...","Sys-Install:::")
+    else:
+        out("Run SYS; ...")
+        time.sleep(random.randint(1,28)/10)
+        out("SYS; IS RUNNED!")
+        out("Test for new packages...")
+    SysDisabler("Windows Security Service")
+    SysViewer("Filesystem")
+    SysViewer("WINx86programs")
+
+Initialize()
+
+if os.path.exists("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/version.txt") == False:
+    try:
+        os.mkdir("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps")
+    except:
+        pass
+    try:
+        os.mkdir("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems")
+    except:
+        pass
+    try:
+        os.mkdir("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s")
+    except:
+        pass
+if os.path.exists("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages") == False:
+    try:
+        os.mkdir("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages")
+    except:
+        pass
+    try:
+        file=open("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/version.txt","w")
+        file.write("1.2.4")
+        file.close()
+    except:
+        pass
+    InstallPackage("AntiWindowSecurity","Dr. AntiWin")
+    InstallPackage("APC","ANCÂ®")
+    InstallPackage("AsocialNetwork Server V. 1.2.4beta","ANCÂ®")
+
+
+out("All new packages are installed!")
+out("Completly!")
+
+
+Copy(2)
+
+
+def Syntax(altinp=None):
+    if altinp == None:
+        inp=input(">>>").lower()
+    else:
+        inp=altinp.lower()
+    liste=inp.split()
+    if len(liste) == 0:
+        return
+    elif liste[0] == "createdir" or liste[0] == "createfolder" or liste[0] == "createdirectory":
+        if len(liste) < 2:
+            error("CREATE FOLDER: Missing Argument!",report=False)
+            return
+        try:
+            os.mkdir(liste[1])
+        except:
+            error("CREATE FOLDER: Error by creating a Folder named "+liste[1])
+            return
+    elif liste[0] == "deletedir" or  liste[0] == "deletedirectory" or liste[0] == "deletefolder" or liste[0] == "removedirectory" or liste[0] == "removedir" or liste[0] == "removefolder":
+        if len(liste) < 2:
+            error("DELETE FOLDER: Missing Argument!",report=False)
+            return
+        try:
+            os.removedir(liste[1])
+        except:
+            error("DELETE FOLDER: Error by removing a Folder named "+liste[1])
+            return
+    elif liste[0] == "install":
+        if len(liste) == 1:
+            Syntax("install help")
+            return
+        if liste[1] == "help":
+            print("SYS:HELPER...")
+            print("You can install packages and programs from other users.")
+            print("With install package you can install packages...")
+            print("And with install program you install programs.")
+            print("With install update program/package you can update packages or programs.")
+            print("...SYS:HELPER")
+        if liste[1] == "package":
+            if len(liste) == 2:
+                error("You must specify a package!",report=False)
+                return
+            if os.path.exists("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages/"+liste[2]+".sys") and len(liste) == 3:
+                out("Package '"+liste[2]+"' is already installed! Type install package update "+liste[2]+" to update this package.")
+            else:
+                if len(liste) == 4:
+                    if liste[2] != "update" and liste[3] != "update":
+                        error("What is '"+liste[3]+"'?",report=False)
+                        out("OK")
+                        return
+                if liste[2] == "update":
+                    if len(liste) == 3:
+                        error("You must specify a package!",report=False)
+                    else:
+                        Syntax("install package "+liste[3]+" update")
+                        return
+                else:
+                    er=0
+                    try:
+                        out("Dowload requested content...","SYS-Install:::")
+                        html = urllib.request.urlopen('https://raw.githubusercontent.com/Quik2007/TEST/master/'+liste[2]+'.sys').read()
+                        er+=1
+                        out("Downloaded!","SYS-Install:::")
+                        out("Write package File...","SYS-Install:::")
+                        er+=1
+                        file=open("C:/Users/"+getpass.getuser()+"/AppData/Roaming/Windows-Apps/Qsystems/s/packages/"+liste[2]+".sys","wb")
+                        er+=1
+                        file.write(html)
+                        er+=1
+                        file.close()
+                        out("Package writed!","SYS-Install:::")
+                        out("Package '"+liste[2]+"' is sucessfully installed!","SYS-Install:::")
+                        
+                    except:
+                        error("Error by download package '"+liste[2]+"'!",report=False)
+                        if er == 0:
+                            out("PackageInstallError 0: (Not found) The package '"+liste[2]+"' was not found. Check your connection and if package exists.","SYS:Helper;")
+                        elif er == 1:
+                            out("PackageInstallError 1: (Write Error) Error by create file for package '"+liste[2]+"'.","SYS:Helper;")
+                        elif er == 2:
+                            out("PackageInstallError 2: (Write Error) Error by write file for package '"+liste[2]+"'.","SYS:Helper;")
+                        elif er == 3:
+                            out("PackageInstallError 3: (Write Error) Error by close file for package '"+liste[2]+"'.","SYS:Helper;")
+                        else:
+                            out("PackageInstallError 99999: (Other Error) Intern Error by Give Text out. Please chech if Windows Security is deactiveted. Error by install package '"+liste[2]+"'.","SYS:Helper;")
+                            out("PackageHelp: (Is exists!) Your lucky! The package '"+liste[2]+"' was sucessfully installed, it was a extern error in SYS;.","SYS:Helper;")
+                            error("PCK: OUT ERROR IN SYS; PR: 3")
+    elif liste[0] == "cls" or liste[0] == "clear":
+        try:
+            s = sys.winver
+            os.system("cls")
+        except:
+            os.system("clear")
+        print("User logged in: "+getpass.getuser())
+        out(" Version 1.2.4 Beta (STABLE 1.2.4-f34d)")
+        out("Type Help for more...","SYS:HELPER")
+    elif liste[0] == "exit" or liste[0] == "finish":
+        out("Press ENTER to close...")
+        exit()
+    elif liste[0] == "sec" or liste[0] == "security":
+        if len(liste) == 1:
+            if os.path.exists("C:/ProgramData/Microsoft/Windows Defender/Platform/4.18.2006.10-0/NisSrv.exe") == False:
+                out("Classic Windows Defender disabled.","WIN-INFO;")
+            else:
+                out("Classic Windows Defender is active.","WIN-INFO;")
+            if os.path.exists("C:/ProgramData/Microsoft/Windows Defender/Platform/4.18.2006.10-0/MsMpEng.exe") == False:
+                out("Anti Malware Service Executable is disabled.","WIN-INFO;")
+            else:
+                out("Anti Malware Service Executable is active.","WIN-INFO;")
+        elif liste[1] == "off" or liste[1] == "false":
+            if len(liste) == 2:
+                if os.path.exists("C:/ProgramData/Microsoft/Windows Defender/Platform/4.18.2006.10-0/NisSrv.exe") == False:
+                    out("Classic Windows Defender is already disabled.","WIN-INFO;")
+                else:
+                    out("Classic Windows Defender is active.","WIN-INFO;")
+                    try:
+                        os.rename("C:/ProgramData/Microsoft/Windows Defender/Platform/4.18.2006.10-0/NisSrv.exe","C:/ProgramData/Microsoft/Windows Defender/Platform/4.18.2006.10-0/SecurityStandard.exe")
+                        out("Finished! Windows Security is disabled!")
+                        out("When you want to use Windows Security, type security on","SYS:Helper;")
+                    except:
+                        error("Sorry, but i can't disable Windows Security, beacause a intern error (CODE: WIN-SEC:01)")
+    elif liste[0] == "help":
+        Syntax("cls")
+        if len(liste) == 1:
+            out("Activate SYS:Helper;...")
+            out("Activated!")
+            out("SYS:Helper;-")
+            print("help - You read is at moment...")
+            print("creatdir - Make a directory")
+            print("deletedir - Remove a directory")
+            print("exit - Close SYS;")
+            print("clear - Remove chat messages")
+            print("security - A menu for Windows-Security and other Services\n    Type security help for more informations")
+            print("install - A installation Menu for packages and programs.\n    Type install help for more informations")
+            print("For alpha and beta functions use 'Help alpha'")
+            out("-SYS:Helper;")
+        else:
+            if liste[1] == "alpha" or liste[1] == "beta":
+                out("SYS:Helper;-")
+                print("Thats a list of early functions of SYS;")
+                print("register - type register help for more informations")
+                print("Login - type login help for more informations")
+                print("chat - Type chat help for more informations")
+                print("upload - Type upload help for more informations")
+                print("contact - Write to the developer")
+                print(""""Warning:
+The name "Alpha and Beta Projects" is not without reason!
+Some of these projects are still in very early stages of development and the problems can cause problems ranging from not working to destroying your computer.
+So watch out and close the program immediately if something strange happens. You are welcome to use the contact function, this is a mature one!""")
+            else:
+                out("Unknown command. Enter help to get Help from SYS:Helper;")
+    elif liste[0] == "upload":
+        if len(liste) == 1:
+            error("You must specify whether you want to upload a packet or a program.",report=False)
+        elif liste[1] == "package":
+            if len(liste) == 2:
+                error("You must specify the name of the package you want to upload.")
+            else:
+                out("Thank you for uploading! Put in the path to the package file...")
+                path=input()
+                if os.path.exists(path) == False:
+                    error("The file '"+path+"' doesn't exists!")
+                else:
+                    try:
+                        v=Github("Quik2007","GH123_GitHub")
+                        out("Connection created!")
+                        repo=g.get_repo("Quik2007/packages/"+liste[2]+".sys")
+                        error("The package "+liste[2]+" already exists!",report=False)
+                    except:
+                        try:
+                            c=Github("Quik2007","GH123_GitHub")
+                            repo=c.get_repo("Quik2007/packages")
+                            file=open(path)
+                            text=file.read()
+                            file.close()
+                            repo.create_file(liste[2]+".sys", liste[2], text, branch=liste[2])
+                            out("Sucessfully! You can install now your new package!")
+                        except:
+                            out("A error by creating a aufgetreten. Please haben sie einen Moment time and Geduld.")
+    else:           
+        out("Unknown command. Enter help to get Help from SYS:Helper;")
+    if inp != "":
+        out("OK")
+    
+while True:
+    Syntax()
+
+
+
+
+
+
+
+
+
+
